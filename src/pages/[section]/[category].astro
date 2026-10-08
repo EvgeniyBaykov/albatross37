@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import EmptyNotice from '../../components/EmptyNotice.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getCatalog, href, pluralModels } from '../../data/catalog';
+
+export async function getStaticPaths() {
+  const catalog = await getCatalog();
+  return catalog.flatMap((section) =>
+    section.categories.map((category) => ({
+      params: { section: section.slug, category: category.slug },
+      props: { category },
+    })),
+  );
+}
+
+const { category } = Astro.props;
+const { title, note, products } = category.data;
+const section = category.section;
+---
+
+<Base
+  title={`${title} — ${section.title}`}
+  description={`${section.title}: ${title.toLowerCase()} от производителя ООО «Альбатрос», Иваново.`}
+>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href={href('/')}>Главная</a><span aria-hidden="true">/</span>
+      <a href={href(`/${section.slug}/`)}>{section.title}</a><span aria-hidden="true">/</span>
+      <span>{title}</span>
+    </nav>
+    <div class="page-head">
+      <h1>{title}</h1>
+      {products.length > 0 && <p>{pluralModels(products.length)}{note && ` · ${note}`}</p>}
+    </div>
+
+    {
+      products.length > 0 ? (
+        <div class="products">
+          {products.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      ) : (
+        <EmptyNotice />
+      )
+    }
+  </div>
+  <Lightbox />
+</Base>
+
+<style>
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+</style>

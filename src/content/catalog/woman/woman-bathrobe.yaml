@@ -1,0 +1,88 @@
+title: Халаты
+cover: ./photos/304-1.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '301'
+  title: Халат с рельефами на молнии, с карманами
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/301-1.jpg
+  - ./photos/301-2.jpg
+  - ./photos/301-3.jpg
+- sku: '302'
+  title: Халат на пуговицах с крылышками, накладные карманы, низ с оборкой
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/302-1.jpg
+  - ./photos/302-2.jpg
+  - ./photos/302-3.jpg
+  - ./photos/302-4.jpg
+- sku: '303'
+  title: Халат на пуговицах с крылышками, с карманами, низ с оборкой
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/303-1.jpg
+  - ./photos/303-2.jpg
+- sku: '304'
+  title: Халат с запахом, длинными рукавами, внизу рукава широкое кружево
+  material: вискоза 92% хлопок 8% лайкра
+  images:
+  - ./photos/304-1.jpg
+  - ./photos/304-2.jpg
+  - ./photos/304-3.jpg
+- sku: '305'
+  title: Халат на пуговицах с карманами
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/305-1.jpg
+  - ./photos/305-2.jpg
+- sku: '306'
+  title: Халат из велсовта с капюшоном под окантовку
+  material: 100% полиэстер
+  sizes: 44-54
+  images:
+  - ./photos/306-1.jpg
+  - ./photos/306-2.jpg
+  - ./photos/306-3.jpg
+- sku: '307'
+  title: Халат на запах с одинарным капюшоном
+  material: велсовт 100% полиэстер
+  sizes: 46-56
+  images:
+  - ./photos/307-1.jpg
+  - ./photos/307-2.jpg
+  - ./photos/307-3.jpg
+  - ./photos/307-4.jpg
+  - ./photos/307-5.jpg
+  - ./photos/307-6.jpg
+  - ./photos/307-7.jpg
+  - ./photos/307-8.jpg
+  - ./photos/307-9.jpg
+  - ./photos/307-10.jpg
+  - ./photos/307-11.jpg
+- sku: '308'
+  title: Халат на молнии
+  material: велсовт 100% полиэстер
+  sizes: 46-56
+  images:
+  - ./photos/308-1.jpg
+  - ./photos/308-2.jpg
+  - ./photos/308-3.jpg
+- sku: '309'
+  title: Халат на запах с двойным капюшоном
+  material: велсовт 100% полиэстер
+  sizes: 44-58
+  images:
+  - ./photos/309-1.jpg
+  - ./photos/309-2.jpg
+  - ./photos/309-3.jpg
+  - ./photos/309-4.jpg
+  - ./photos/309-5.jpg
+  - ./photos/309-6.jpg
+  - ./photos/309-7.jpg
+  - ./photos/309-8.jpg
+  - ./photos/309-9.jpg

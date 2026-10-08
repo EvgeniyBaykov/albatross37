@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import EmptyNotice from '../../components/EmptyNotice.astro';
+import { getCatalog, href, pluralModels } from '../../data/catalog';
+
+export async function getStaticPaths() {
+  const catalog = await getCatalog();
+  return catalog.map((section) => ({ params: { section: section.slug }, props: { section } }));
+}
+
+const { section } = Astro.props;
+const hasProducts = section.categories.some((category) => category.data.products.length > 0);
+---
+
+<Base title={section.title} description={`${section.title} из трикотажа от производителя ООО «Альбатрос», Иваново.`}>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href={href('/')}>Главная</a><span aria-hidden="true">/</span><span>{section.title}</span>
+    </nav>
+    <div class="page-head">
+      <h1>{section.title}</h1>
+    </div>
+
+    {!hasProducts && <EmptyNotice />}
+
+    <div class:list={['categories', { 'categories--compact': !hasProducts }]}>
+      {
+        section.categories.map((category) => (
+          <a class="category card" href={href(`/${section.slug}/${category.slug}/`)}>
+            {category.data.cover && (
+              <Image
+                src={category.data.cover}
+                alt={category.data.title}
+                widths={[300, 450, 600]}
+                sizes="(max-width: 600px) 50vw, 280px"
+                class="category__img"
+              />
+            )}
+            <span class="category__body">
+              <span class="category__title">{category.data.title}</span>
+              {category.data.products.length > 0 && (
+                <span class="category__count">{pluralModels(category.data.products.length)}</span>
+              )}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<style>
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .categories--compact {
+    margin-top: 24px;
+  }
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-decoration: none;
+    transition:
+      transform 0.15s,
+      box-shadow 0.15s;
+  }
+
+  .category:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+  }
+
+  .category__img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    background: var(--line);
+  }
+
+  .category__body {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 18px 16px;
+    border-top: 3px solid var(--accent);
+  }
+
+  .category__title {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+
+  .category__count {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .categories {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .category__body {
+      padding: 10px 12px 12px;
+    }
+  }
+</style>

@@ -1,0 +1,40 @@
+title: Платья, сарафаны
+cover: ./photos/104-2.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '101'
+  title: Короткое платье с открытыми плечами, низ с оборкой
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/101-1.jpg
+  - ./photos/101-2.jpg
+  - ./photos/101-3.jpg
+- sku: '102'
+  title: Платье с большим вырезом с коротким рукавом, по горловине волан
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/102-1.jpg
+  - ./photos/102-2.jpg
+  - ./photos/102-3.jpg
+- sku: '104'
+  title: Длинное платье с открытыми плечами и двойной оборкой снизу
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/104-1.jpg
+  - ./photos/104-2.jpg
+  - ./photos/104-3.jpg
+- sku: '106'
+  title: Платье с рукавами 3/4 и карманами
+  material: велюр 80%, хлопок 20%, полиэстер
+  sizes: 46-56
+  images:
+  - ./photos/106-1.jpg
+- sku: '107'
+  title: Платье с короткими рукавами и карманами
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/107-1.jpg

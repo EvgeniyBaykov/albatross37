@@ -1,0 +1,13 @@
+title: Толстовки
+cover: ./photos/204-2.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '204'
+  title: Толстовка женская
+  material: флис 100% полиэстер
+  sizes: 46-56
+  images:
+  - ./photos/204-1.jpg
+  - ./photos/204-2.jpg
+  - ./photos/204-3.jpg
+  - ./photos/204-4.jpg

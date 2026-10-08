@@ -1,0 +1,146 @@
+<dialog class="lightbox" aria-label="Просмотр фото">
+  <img class="lightbox__img" alt="" />
+  <span class="lightbox__counter"></span>
+  <button type="button" class="lightbox__btn lightbox__close" aria-label="Закрыть">×</button>
+  <button type="button" class="lightbox__btn lightbox__prev" aria-label="Предыдущее фото">‹</button>
+  <button type="button" class="lightbox__btn lightbox__next" aria-label="Следующее фото">›</button>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('.lightbox')!;
+  const img = dialog.querySelector<HTMLImageElement>('.lightbox__img')!;
+  const counter = dialog.querySelector<HTMLElement>('.lightbox__counter')!;
+  const prev = dialog.querySelector<HTMLButtonElement>('.lightbox__prev')!;
+  const next = dialog.querySelector<HTMLButtonElement>('.lightbox__next')!;
+  let images: string[] = [];
+  let current = 0;
+
+  function show(index: number) {
+    current = (index + images.length) % images.length;
+    const src = images[current];
+    // Сбрасываем прошлое фото, чтобы оно не висело, пока грузится новое
+    if (img.getAttribute('src') !== src) {
+      img.removeAttribute('src');
+      img.src = src;
+    }
+    counter.textContent = `${current + 1} / ${images.length}`;
+    const single = images.length < 2;
+    prev.hidden = single;
+    next.hidden = single;
+    counter.hidden = single;
+  }
+
+  document.addEventListener('click', (event) => {
+    // Ctrl/Cmd/Shift/Alt+клик — обычное поведение ссылки (открыть фото в новой вкладке)
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = (event.target as Element).closest<HTMLAnchorElement>('[data-gallery] a[data-index]');
+    if (!link) return;
+    event.preventDefault();
+    images = JSON.parse(link.closest<HTMLElement>('[data-gallery]')!.dataset.gallery!);
+    show(Number(link.dataset.index));
+    dialog.showModal();
+  });
+
+  prev.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
+  dialog.querySelector('.lightbox__close')!.addEventListener('click', () => dialog.close());
+  // Клик по фону закрывает окно
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') show(current - 1);
+    if (event.key === 'ArrowRight') show(current + 1);
+  });
+
+  let touchX: number | null = null;
+  dialog.addEventListener('touchstart', (event) => (touchX = event.touches[0].clientX), { passive: true });
+  dialog.addEventListener('touchend', (event) => {
+    if (touchX === null) return;
+    const delta = event.changedTouches[0].clientX - touchX;
+    if (Math.abs(delta) > 50 && images.length > 1) show(current + (delta < 0 ? 1 : -1));
+    touchX = null;
+  });
+</script>
+
+<style>
+  .lightbox {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .lightbox::backdrop {
+    background: rgb(10 11 14 / 0.92);
+  }
+
+  .lightbox[open] {
+    display: grid;
+    place-items: center;
+  }
+
+  .lightbox__img {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 96px);
+    max-height: calc(100dvh - 96px);
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  .lightbox__counter {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .lightbox__btn {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    /* Тёмная подложка: на мобильных кнопки лежат поверх светлых фото */
+    background: rgb(0 0 0 / 0.5);
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .lightbox__btn:hover {
+    background: var(--accent);
+    color: var(--ink);
+  }
+
+  .lightbox__btn[hidden] {
+    display: none;
+  }
+
+  .lightbox__close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .lightbox__prev,
+  .lightbox__next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .lightbox__prev {
+    left: 16px;
+  }
+
+  .lightbox__next {
+    right: 16px;
+  }
+</style>

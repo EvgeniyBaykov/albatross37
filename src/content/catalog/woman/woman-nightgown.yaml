@@ -1,0 +1,60 @@
+title: Ночные сорочки
+cover: ./photos/602-1.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '601'
+  title: Однотонная сорочка с цветной вставкой на груди и по низу
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/601-1.jpg
+- sku: '602'
+  title: Однотонная сорочка с цветной кокеткой
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/602-1.jpg
+- sku: '603'
+  title: Сорочка
+  material: вискоза 95% хлопок 5% лайкра
+  sizes: 46-56
+  images:
+  - ./photos/603-1.jpg
+  - ./photos/603-2.jpg
+  - ./photos/603-3.jpg
+- sku: '604'
+  title: Сорочка с капелькой спереди
+  material: вискоза 95% хлопок 5% лайкра
+  sizes: 42-52
+  images:
+  - ./photos/604-1.jpg
+  - ./photos/604-2.jpg
+  - ./photos/604-3.jpg
+  - ./photos/604-4.jpg
+  - ./photos/604-5.jpg
+- sku: '605'
+  title: Сорочка
+  material: вискоза 95% хлопок 5% лайкра
+  sizes: 52-62
+- sku: '606'
+  title: Сорочка на бретельках
+  material: вискоза 95% хлопок 5% лайкра
+  sizes: 44-54
+  images:
+  - ./photos/606-1.jpg
+  - ./photos/606-2.jpg
+  - ./photos/606-3.jpg
+  - ./photos/606-4.jpg
+  - ./photos/606-5.jpg
+  - ./photos/606-6.jpg
+- sku: '607'
+  title: Сорочка реглан
+  material: вискоза 95% хлопок 5% лайкра
+  sizes: 52-62
+  images:
+  - ./photos/607-1.jpg
+  - ./photos/607-2.jpg
+  - ./photos/607-3.jpg
+  - ./photos/607-4.jpg
+  - ./photos/607-5.jpg
+  - ./photos/607-6.jpg

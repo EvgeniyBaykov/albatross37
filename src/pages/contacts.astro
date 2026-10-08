@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { company } from '../data/company';
+import { href } from '../data/catalog';
+
+const rows = [
+  { label: 'Менеджер', value: company.manager },
+  { label: 'Телефон', value: company.phone, link: company.phoneHref },
+  { label: 'Email', value: company.email, link: `mailto:${company.email}` },
+  { label: 'Юридический адрес', value: company.address },
+  { label: 'ИНН', value: company.inn },
+  { label: 'ОГРН', value: company.ogrn },
+];
+---
+
+<Base title="Контакты" description={`Контакты ${company.legalName}: телефон, email, адрес, реквизиты.`}>
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href={href('/')}>Главная</a><span aria-hidden="true">/</span><span>Контакты</span>
+    </nav>
+    <div class="page-head">
+      <h1>Контакты</h1>
+    </div>
+
+    <div class="contacts card">
+      <h2>{company.legalName}</h2>
+      <dl>
+        {
+          rows.map((row) => (
+            <div class="row">
+              <dt>{row.label}</dt>
+              <dd>{row.link ? <a href={row.link}>{row.value}</a> : row.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <div class="actions">
+        <a class="btn btn--accent" href={company.phoneHref}>Позвонить</a>
+        <a class="btn" href={company.priceUrl} target="_blank" rel="noopener">Прайс-лист</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .contacts {
+    max-width: 760px;
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  dt {
+    color: var(--muted);
+  }
+
+  dd {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  dd a {
+    text-decoration: none;
+  }
+
+  dd a:hover {
+    text-decoration: underline;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 560px) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+</style>

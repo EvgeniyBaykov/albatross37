@@ -1,0 +1,126 @@
+---
+import '@fontsource-variable/rubik';
+import '../styles/global.css';
+import { company } from '../data/company';
+import { getCatalog, href } from '../data/catalog';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Страница-заглушка (404): без canonical и не индексируется. */
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = `${company.legalName} — ${company.tagline.toLowerCase()} в Иваново. Женский, мужской и детский трикотаж оптом.`,
+  noindex = false,
+} = Astro.props;
+const fullTitle = title ? `${title} — ${company.name}` : `${company.name} — ${company.tagline}`;
+const catalog = await getCatalog();
+const path = Astro.url.pathname;
+// Временная сборка в подпапке (BASE_PATH) не должна индексироваться, canonical всегда ведёт на основной домен
+const isPreviewBuild = import.meta.env.BASE_URL !== '/';
+const canonical = new URL(path.slice(import.meta.env.BASE_URL.length - 1), Astro.site);
+const isActive = (prefix: string) => path.startsWith(href(prefix));
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {(noindex || isPreviewBuild) && <meta name="robots" content="noindex" />}
+    <link rel="icon" href={href('/icon-32x32.png')} sizes="32x32" />
+    <link rel="icon" href={href('/icon-192x192.png')} sizes="192x192" />
+    <link rel="apple-touch-icon" href={href('/icon-180x180.png')} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container topbar__inner">
+        <a href={company.phoneHref} class="topbar__phone">{company.phone}</a>
+        <a href={`mailto:${company.email}`} class="topbar__email">{company.email}</a>
+        <a href={company.priceUrl} class="topbar__price" target="_blank" rel="noopener">Прайс-лист</a>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container header__inner">
+        <a href={href('/')} class="logo">
+          <img src={href('/icon-192x192.png')} alt="" width="44" height="44" />
+          <span>
+            <span class="logo__name">{company.name}</span>
+            <span class="logo__tagline">{company.tagline}</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Основное меню">
+          <ul class="nav__list">
+            {
+              catalog.map((section) => (
+                <li class="nav__item">
+                  <a href={href(`/${section.slug}/`)} class:list={['nav__link', { 'is-active': isActive(`/${section.slug}/`) }]}>
+                    {section.title}
+                  </a>
+                  <ul class="nav__dropdown">
+                    {section.categories.map((category) => (
+                      <li>
+                        <a href={href(`/${section.slug}/${category.slug}/`)}>{category.data.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+            <li class="nav__item">
+              <a href={href('/contacts/')} class:list={['nav__link', { 'is-active': isActive('/contacts/') }]}>Контакты</a>
+            </li>
+          </ul>
+        </nav>
+
+        <details class="mobile-menu">
+          <summary aria-label="Меню"><span></span></summary>
+          <nav class="mobile-menu__panel" aria-label="Меню">
+            {
+              catalog.map((section) => (
+                <div class="mobile-menu__group">
+                  <a href={href(`/${section.slug}/`)} class="mobile-menu__title">{section.title}</a>
+                  {section.categories.map((category) => (
+                    <a href={href(`/${section.slug}/${category.slug}/`)}>{category.data.title}</a>
+                  ))}
+                </div>
+              ))
+            }
+            <a href={href('/contacts/')} class="mobile-menu__title">Контакты</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main class="main">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div>
+          <div class="footer__name">{company.legalName}</div>
+          <div>{company.tagline}</div>
+          <div class="footer__muted">{company.address}</div>
+        </div>
+        <div class="footer__contacts">
+          <a href={company.phoneHref}>{company.phone}</a>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+          <a href={company.priceUrl} target="_blank" rel="noopener">Прайс-лист</a>
+        </div>
+      </div>
+      <div class="container footer__copy">© {new Date().getFullYear()} {company.legalName}</div>
+    </footer>
+  </body>
+</html>

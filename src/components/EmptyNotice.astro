@@ -1,0 +1,10 @@
+---
+import { company } from '../data/company';
+---
+
+<div class="notice card">
+  <h2>Фото моделей скоро появятся</h2>
+  <p>Ассортимент этого раздела уточняйте у менеджера или смотрите в прайс-листе.</p>
+  <a class="btn btn--accent" href={company.phoneHref}>{company.phone}</a>
+  <a class="btn" href={company.priceUrl} target="_blank" rel="noopener">Прайс-лист</a>
+</div>

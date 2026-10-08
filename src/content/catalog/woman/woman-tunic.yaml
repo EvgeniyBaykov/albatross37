@@ -1,0 +1,59 @@
+title: Туники, футболки
+cover: ./photos/103-1.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '103'
+  title: Туника с открытыми плечами, удлененная по бокам
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/103-1.jpg
+  - ./photos/103-2.jpg
+  - ./photos/103-3.jpg
+  - ./photos/103-4.jpg
+- sku: '105'
+  title: Туника на пуговицах, рукава 3/4, низ с закругленными боками
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/105-1.jpg
+  - ./photos/105-2.jpg
+- sku: '108'
+  title: Туника на пуговицах с короткими рукавами, низ с закругленными боками
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/108-1.jpg
+  - ./photos/108-2.jpg
+- sku: '112'
+  title: Туника
+  material: кулирка 100% хлопок
+  sizes: 44-54
+  images:
+  - ./photos/112-1.jpg
+  - ./photos/112-2.jpg
+  - ./photos/112-3.jpg
+- sku: '111'
+  title: Футболка
+  material: кулирка с лайкрой 92% хлопок 8% лайкра
+  sizes: 40-50
+  images:
+  - ./photos/111-1.jpg
+  - ./photos/111-2.jpg
+  - ./photos/111-3.jpg
+- sku: '113'
+  title: Футболка
+  material: кулирка 100% хлопок
+  sizes: 42-52
+  images:
+  - ./photos/113-1.jpg
+  - ./photos/113-2.jpg
+  - ./photos/113-3.jpg
+- sku: '114'
+  title: Футболка
+  material: вискоза
+  sizes: 48-58
+  images:
+  - ./photos/114-1.webp
+  - ./photos/114-2.webp
+  - ./photos/114-3.webp

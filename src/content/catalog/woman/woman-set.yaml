@@ -1,0 +1,16 @@
+title: Халаты-сорочки
+cover: ./photos/401-1.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '401'
+  title: Халат с запахом, сорочка однотонная с вставкой
+  material: кулирка 100%
+  images:
+  - ./photos/401-1.jpg
+  - ./photos/401-2.jpg
+- sku: '402'
+  title: Халат с запахом, сорочка с цветной кокеткой
+  material: кулирка 100% хлопок
+  images:
+  - ./photos/402-1.jpg
+  - ./photos/402-2.jpg

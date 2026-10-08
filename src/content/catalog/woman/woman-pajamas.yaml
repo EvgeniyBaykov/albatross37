@@ -1,0 +1,83 @@
+title: Пижамы
+cover: ./photos/701-11.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '701'
+  title: Пижама с длинным рукавом и брюками
+  material: футер с начесом
+  sizes: 46-56
+  images:
+  - ./photos/701-1.jpg
+  - ./photos/701-2.jpg
+  - ./photos/701-3.jpg
+  - ./photos/701-4.jpg
+  - ./photos/701-5.jpg
+  - ./photos/701-6.jpg
+  - ./photos/701-7.jpg
+  - ./photos/701-8.jpg
+  - ./photos/701-9.jpg
+  - ./photos/701-10.jpg
+  - ./photos/701-11.jpg
+  - ./photos/701-12.jpg
+  - ./photos/701-13.jpg
+  - ./photos/701-14.jpg
+  - ./photos/701-15.jpg
+- sku: '702'
+  title: Пижама с длинным рукавом и брюками
+  material: кулирка 100% хлопок
+  sizes: 46-56
+  images:
+  - ./photos/702-1.jpg
+  - ./photos/702-2.jpg
+  - ./photos/702-3.jpg
+  - ./photos/702-4.jpg
+  - ./photos/702-5.jpg
+  - ./photos/702-6.jpg
+  - ./photos/702-7.jpg
+  - ./photos/702-8.jpg
+- sku: '703'
+  title: 'Пижама: кофта на пуговицах и шорты'
+  material: кулирка 100% хлопок
+  sizes: 42-52
+  images:
+  - ./photos/703-1.jpg
+  - ./photos/703-2.jpg
+  - ./photos/703-3.jpg
+- sku: '709'
+  title: Пижама с шортами
+  material: вискоза
+  sizes: 44-54
+  images:
+  - ./photos/709-1.webp
+  - ./photos/709-2.webp
+  - ./photos/709-3.jpg
+  - ./photos/709-4.jpg
+  - ./photos/709-5.jpg
+  - ./photos/709-6.jpg
+- sku: '710'
+  title: Пижама с шортами
+  material: вискоза
+  sizes: 52-62
+  images:
+  - ./photos/710-1.jpg
+  - ./photos/710-2.jpg
+  - ./photos/710-3.jpg
+  - ./photos/710-4.jpg
+  - ./photos/710-5.jpg
+  - ./photos/710-6.jpg
+- sku: '711'
+  title: Пижама с шортами
+  material: кулирка-лайкра
+  sizes: 42-52
+  images:
+  - ./photos/711-1.webp
+  - ./photos/711-2.webp
+  - ./photos/711-3.webp
+- sku: '712'
+  title: Пижама с шортами
+  material: кулирка-лайкра
+  sizes: 42-52
+  images:
+  - ./photos/712-1.webp
+  - ./photos/712-2.webp
+  - ./photos/712-3.webp

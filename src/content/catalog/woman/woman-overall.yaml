@@ -1,0 +1,12 @@
+title: Комбинезоны
+cover: ./photos/203-1.jpg
+note: Наличие расцветок уточняется у менеджера
+products:
+- sku: '203'
+  title: Комбинезон на молнии с капюшоном
+  material: футер трехнитка с начесом 70% хлопок 30% полиэстер
+  images:
+  - ./photos/203-1.jpg
+  - ./photos/203-2.jpg
+  - ./photos/203-3.jpg
+  - ./photos/203-4.jpg

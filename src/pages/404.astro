@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../data/catalog';
+---
+
+<Base title="Страница не найдена" noindex>
+  <div class="container">
+    <div class="notice card">
+      <h1>Страница не найдена</h1>
+      <p>Возможно, она была перемещена. Загляните в каталог или на главную.</p>
+      <a class="btn btn--accent" href={href('/')}>На главную</a>
+      <a class="btn" href={href('/woman/')}>Каталог</a>
+    </div>
+  </div>
+</Base>
