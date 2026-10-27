@@ -23,6 +23,8 @@ const path = Astro.url.pathname;
 const isPreviewBuild = import.meta.env.BASE_URL !== '/';
 const canonical = new URL(path.slice(import.meta.env.BASE_URL.length - 1), Astro.site);
 const isActive = (prefix: string) => path.startsWith(href(prefix));
+// Метрика считает только боевую сборку для основного домена: без dev-сервера и временного адреса
+const withMetrika = import.meta.env.PROD && !isPreviewBuild;
 ---
 
 <!doctype html>
@@ -41,8 +43,28 @@ const isActive = (prefix: string) => path.startsWith(href(prefix));
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="yandex-verification" content="2d25de5ad9b1f1d1" />
+    {
+      withMetrika && (
+        <script is:inline>
+          (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            (k = e.createElement(t)), (a = e.getElementsByTagName(t)[0]), (k.async = 1), (k.src = r), a.parentNode.insertBefore(k, a);
+          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=113831912', 'ym');
+          ym(113831912, 'init', { ssr: true, clickmap: true, ecommerce: 'dataLayer', referrer: document.referrer, url: location.href, accurateTrackBounce: true, trackLinks: true });
+        </script>
+      )
+    }
   </head>
   <body>
+    {
+      withMetrika && (
+        <noscript>
+          <div><img src="https://mc.yandex.ru/watch/113831912" style="position:absolute; left:-9999px;" alt="" /></div>
+        </noscript>
+      )
+    }
     <div class="topbar">
       <div class="container topbar__inner">
         <a href={company.phoneHref} class="topbar__phone">{company.phone}</a>
