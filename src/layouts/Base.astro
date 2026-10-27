@@ -127,6 +127,20 @@ const withMetrika = import.meta.env.PROD && !isPreviewBuild;
       </div>
     </header>
 
+    <script>
+      // Высота мобильного меню — до низа экрана от нижнего края шапки: после прокрутки тёмная полоса уходит, и шапка поднимается
+      const header = document.querySelector<HTMLElement>('.header');
+      const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+      const fitMenu = () => {
+        if (header && menu?.open) {
+          menu.style.setProperty('--menu-top', `${Math.max(0, header.getBoundingClientRect().bottom)}px`);
+        }
+      };
+      menu?.addEventListener('toggle', fitMenu);
+      window.addEventListener('scroll', fitMenu, { passive: true });
+      window.addEventListener('resize', fitMenu);
+    </script>
+
     <main class="main">
       <slot />
     </main>

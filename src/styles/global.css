@@ -294,9 +294,10 @@ p {
   left: 0;
   right: 0;
   top: 100%;
-  /* 112px = тёмная полоса (40) + шапка (72), когда страница не прокручена */
-  max-height: calc(100vh - 112px);
-  max-height: calc(100dvh - 112px);
+  /* --menu-top — низ шапки на экране, его выставляет скрипт в Base.astro.
+     Запасные 112px = тёмная полоса (40) + шапка (72), когда страница не прокручена */
+  max-height: calc(100vh - var(--menu-top, 112px));
+  max-height: calc(100dvh - var(--menu-top, 112px));
   overflow-y: auto;
   background: #fff;
   border-bottom: 1px solid var(--line);
