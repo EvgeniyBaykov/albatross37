@@ -3,6 +3,7 @@ import '@fontsource-variable/rubik';
 import '../styles/global.css';
 import { company } from '../data/company';
 import { getCatalog, href } from '../data/catalog';
+import CookieNotice from '../components/CookieNotice.astro';
 
 interface Props {
   title?: string;
@@ -143,7 +144,11 @@ const withMetrika = import.meta.env.PROD && !isPreviewBuild;
           <a href={company.priceUrl} target="_blank" rel="noopener">Прайс-лист</a>
         </div>
       </div>
-      <div class="container footer__copy">© {new Date().getFullYear()} {company.legalName}</div>
+      <div class="container footer__copy">
+        <span>© {new Date().getFullYear()} {company.legalName}</span>
+        <a href={href('/privacy/')}>Политика конфиденциальности</a>
+      </div>
     </footer>
+    {withMetrika && <CookieNotice />}
   </body>
 </html>

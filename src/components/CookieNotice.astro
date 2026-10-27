@@ -1,0 +1,90 @@
+---
+import { href } from '../data/catalog';
+---
+
+<div class="cookie" role="region" aria-label="Уведомление о cookie" hidden>
+  <p>
+    Сайт использует cookie и Яндекс Метрику для анализа посещаемости. Подробнее — в{' '}
+    <a href={href('/privacy/')}>политике конфиденциальности</a>. Отключить cookie можно в настройках браузера.
+  </p>
+  <button type="button" class="btn btn--accent">Понятно</button>
+</div>
+
+<script>
+  const KEY = 'cookie-notice-accepted';
+  const notice = document.querySelector<HTMLElement>('.cookie');
+
+  let accepted = false;
+  try {
+    accepted = localStorage.getItem(KEY) === '1';
+  } catch {
+    // Хранилище недоступно (приватный режим) — просто показываем плашку
+  }
+
+  if (notice && !accepted) {
+    notice.hidden = false;
+    // Отступ снизу по высоте плашки, чтобы она не закрывала конец страницы и подвал
+    const reserve = () => {
+      document.body.style.paddingBottom = notice.hidden ? '' : `${notice.offsetHeight + 32}px`;
+    };
+    const observer = new ResizeObserver(reserve);
+    observer.observe(notice);
+    notice.querySelector('button')?.addEventListener('click', () => {
+      notice.hidden = true;
+      observer.disconnect();
+      reserve();
+      try {
+        localStorage.setItem(KEY, '1');
+      } catch {
+        // Не запомнили — плашка появится снова на следующей странице
+      }
+    });
+  }
+</script>
+
+<style>
+  .cookie {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    /* Ниже шапки (z-index 20): открытое мобильное меню перекрывает плашку */
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 0.25);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .cookie[hidden] {
+    display: none;
+  }
+
+  .cookie p {
+    margin: 0;
+  }
+
+  .cookie a {
+    color: var(--accent);
+  }
+
+  .cookie .btn {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .cookie {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+  }
+</style>
